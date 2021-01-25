@@ -14,5 +14,5 @@ let sql = `
 
 let output = mapJavaFrom(sql);
 
-require('fs').writeFileSync('out.java', output);
+require('fs').writeFileSync('output/out.java', output);
 console.log(output);

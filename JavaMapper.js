@@ -44,12 +44,13 @@ function mapJavaUsing(table_name, sql_vars, non_public = false) {
 	
 	// building the class
 	let attrs = '', constr_def = '', 
-		set_def = '', get_def = '';
+		set_def = '', get_def = '', to_string_def = '';
 	let enum_var = [];
 	meta_java['attributes'].forEach(attr => {
 		const name = attr.var_name;
 		attrs += indent(1, attr.asAttr(attr_pref) + '\n');
-
+		to_string_def += " " + attr.var_name + ' = " + ' + attr.var_name +  ' + "'; // to_string
+		
 		// setter
 		set_def += indent(1, attr.asSetter(pref) + ' {\n');
 		set_def += indent(2, `this.${name} = ${name};\n`);
@@ -75,7 +76,8 @@ function mapJavaUsing(table_name, sql_vars, non_public = false) {
 		'ATTRIBUTES' : attrs,
 		'CONSTR_DEF' : constr_def,
 		'SET_DEF' : set_def,
-		'GET_DEF' : get_def
+		'GET_DEF' : get_def,
+		'TO_STRING_DEF' : '"' + to_string_def + '"'
 	});	
 }
 

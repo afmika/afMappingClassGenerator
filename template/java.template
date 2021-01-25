@@ -5,4 +5,9 @@ ${CONSTR_DEF}
 
 ${SET_DEF}
 ${GET_DEF}
+	
+	@Override
+	public String toString () {
+		return ${TO_STRING_DEF};
+	}
 }
