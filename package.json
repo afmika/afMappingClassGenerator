@@ -4,7 +4,7 @@
   "description": "SQL table parser/compiler",
   "main": "index.js",
   "scripts": {
-    "test": "npm index.js"
+    "test": "node test_fetchtables.js"
   },
   "repository": {
     "type": "git",
