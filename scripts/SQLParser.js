@@ -1,7 +1,7 @@
 /**
  * @author afmika
  */
-const SQLVar = require('./SQLVar');
+const SQLVar = require(__dirname.replace(/\\/gi, '/') + '/SQLVar');
 function removeSpace(str) {
 	return str.replace(/[ \r\t\n]+/, '');
 }

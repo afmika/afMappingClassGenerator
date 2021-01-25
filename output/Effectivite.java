@@ -1,8 +1,8 @@
 public class Effectivite {
-	public String ideffectivite = null;
-	public Timestamp date_arrivee = null;
-	public Timestamp date_depart = null;
-	public String idprevision = null;
+	String ideffectivite = null;
+	Timestamp date_arrivee = null;
+	Timestamp date_depart = null;
+	String idprevision = null;
 
 	public Effectivite () {}
 	public Effectivite (String ideffectivite, Timestamp date_arrivee, Timestamp date_depart, String idprevision) {

@@ -1,6 +1,6 @@
 public class Bateau {
-	public String nom = null;
-	public float capacite = 0;
+	String nom = null;
+	float capacite = 0;
 
 	public Bateau () {}
 	public Bateau (String nom, float capacite) {

@@ -1,6 +1,6 @@
 public class Quai {
-	public String idquai = null;
-	public int nombre_bateau = 0;
+	String idquai = null;
+	int nombre_bateau = 0;
 
 	public Quai () {}
 	public Quai (String idquai, int nombre_bateau) {

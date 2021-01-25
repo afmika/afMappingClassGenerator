@@ -1,4 +1,4 @@
-const Type = require('./scripts/Type');
+const Type = require(__dirname.replace(/\\/gi, '/') + '/scripts/Type');
 const TemplateLoader = require('./scripts/TemplateLoader');
 const MappingGenerator = require('./scripts/MappingGenerator');
 const SQLVar = require('./scripts/SQLVar');

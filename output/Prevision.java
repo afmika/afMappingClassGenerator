@@ -1,10 +1,10 @@
 public class Prevision {
-	public String idprevision = null;
-	public Timestamp date_saisie = null;
-	public Timestamp date_arrivee = null;
-	public float duree = 0;
-	public String nom_bateau = null;
-	public String idquai = null;
+	String idprevision = null;
+	Timestamp date_saisie = null;
+	Timestamp date_arrivee = null;
+	float duree = 0;
+	String nom_bateau = null;
+	String idquai = null;
 
 	public Prevision () {}
 	public Prevision (String idprevision, Timestamp date_saisie, Timestamp date_arrivee, float duree, String nom_bateau, String idquai) {

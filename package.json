@@ -1,0 +1,25 @@
+{
+  "name": "afmappingclassgenerator",
+  "version": "1.0.0",
+  "description": "SQL table parser/compiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afmika/afMappingClassGenerator.git"
+  },
+  "keywords": [
+    "compiler"
+  ],
+  "author": "afmika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afmika/afMappingClassGenerator/issues"
+  },
+  "homepage": "https://github.com/afmika/afMappingClassGenerator#readme",
+  "bin": {
+    "afsql": "afsql-cli.js"
+  }
+}

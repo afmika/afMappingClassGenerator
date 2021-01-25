@@ -1,4 +1,4 @@
-const SQLParser = require('./scripts/SQLParser');
+const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
 let out = SQLParser.parse(`
 	CREATE           TABLE           Client               (
 		id      INT       PRIMARY KEY AUTO_INCREMENT,

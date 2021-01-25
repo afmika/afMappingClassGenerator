@@ -1,4 +1,4 @@
-const SQLParser = require('./scripts/SQLParser');
+const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
 let content = require('fs').readFileSync('db_test/tables.sql');
 let tab_queries = SQLParser.fetchTables(content.toString());
 

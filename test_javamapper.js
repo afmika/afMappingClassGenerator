@@ -1,4 +1,4 @@
-const mapJavaFrom = require('./JavaMapper');
+const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
 
 let sql = `
 	CREATE TABLE Client (

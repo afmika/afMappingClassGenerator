@@ -2,11 +2,11 @@
  * @author afmika
  */
 
-const Type = require('./scripts/Type');
-const TemplateLoader = require('./scripts/TemplateLoader');
-const MappingGenerator = require('./scripts/MappingGenerator');
-const SQLVar = require('./scripts/SQLVar');
-const SQLParser = require('./scripts/SQLParser');
+const Type = require(__dirname.replace(/\\/gi, '/') + '/scripts/Type');
+const TemplateLoader = require(__dirname.replace(/\\/gi, '/') + '/scripts/TemplateLoader');
+const MappingGenerator = require(__dirname.replace(/\\/gi, '/') + '/scripts/MappingGenerator');
+const SQLVar = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLVar');
+const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
 
 /**
  * @params {string} table_name
@@ -14,7 +14,7 @@ const SQLParser = require('./scripts/SQLParser');
  * @params {boolean} non_public
  */
 function mapJavaUsing(table_name, sql_vars, non_public = false) {
-	const template  = TemplateLoader.loadFromFile('template/java.template');
+	const template  = TemplateLoader.loadFromFile(__dirname.replace(/\\/gi, '/') + '/template/java.template');
 	const generator = new MappingGenerator();
 
 	// type map
@@ -77,15 +77,16 @@ function mapJavaUsing(table_name, sql_vars, non_public = false) {
 		'CONSTR_DEF' : constr_def,
 		'SET_DEF' : set_def,
 		'GET_DEF' : get_def,
-		'TO_STRING_DEF' : '"' + to_string_def + '"'
+		'TO_STRING_DEF' : '"[' + to_string_def + ' ]"'
 	});	
 }
 
-function mapJavaFrom( sql_table ) {
+function mapJavaFrom( sql_table, non_public = false ) {
 	let input = SQLParser.parse(sql_table);
 	return mapJavaUsing(
 		input.table_name,
-		input.attributes
+		input.attributes,
+		non_public
 	);
 }
 

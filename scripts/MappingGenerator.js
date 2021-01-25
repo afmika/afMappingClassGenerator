@@ -1,7 +1,7 @@
 /**
  * @author afmika
  */
-const TransType = require('./TransType');
+const TransType = require(__dirname.replace(/\\/gi, '/') + '/TransType');
 module.exports = class MappingGenerator {
 	constructor (map) {
 		this.setTypeMap(map || {});
