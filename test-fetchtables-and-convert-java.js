@@ -1,5 +1,5 @@
-const SQLParser = require('./scripts/SQLParser');
-const mapJavaFrom = require('./JavaMapper');
+const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
+const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
 
 let content = require('fs').readFileSync('db_test/port.sql');
 let tab_queries = SQLParser.fetchTables(content.toString());
