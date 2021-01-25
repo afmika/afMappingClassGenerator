@@ -1,4 +1,8 @@
 const SQLParser = require('./scripts/SQLParser');
 let content = require('fs').readFileSync('db_test/tables.sql');
-let out = SQLParser.fetchTables(content.toString());
-console.log(out);
+let tab_queries = SQLParser.fetchTables(content.toString());
+
+tab_queries.forEach (query => {
+	let out = SQLParser.parse(query);
+	console.log(out);
+});

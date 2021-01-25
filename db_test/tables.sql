@@ -2,14 +2,14 @@
 CREATE DATABASE test;
 
 
-CREATE TABLE Customer (
-	-- some comments
+CREATE TABLE     Customer (
+-- some comments
 	idcustomer INT PRIMARY KEY AUTO_INCREMENT -- some comments,
 	name INT PRIMARY KEY AUTO_INCREMENT,
 	birth_date  DATE
 ) engine = innodb;
 
-CREATE TABLE Transac (
+CREATE   TABLE Transac (
 	idcustomer INT PRIMARY KEY AUTO_INCREMENT,
 	customer INT,
 	description VARCHAR(80),
