@@ -11,7 +11,7 @@ function removeComments(sql_table) {
 
 module.exports = class SQLParser {
 	static fetchTables(sql_script) {
-		let reg = /create[ ]+table[ ]+([a-zA-Z0-9)()]+)?/gi;
+		let reg = /create( +)table( +)([a-zA-Z0-9)()]+)?/gi;
 		return sql_script.match(reg);
 	}
 
@@ -21,9 +21,9 @@ module.exports = class SQLParser {
 		let first = sql_table.split(/\(/)[0];
 		let var_part = sql_table.split(first + '(')[1];
 		
-		/create table[ ]+(.+)?\(/gi.test(sql_table);
-		let table_name = RegExp.$1;
-		let var_sections = var_part.split(/,[ \n]*/);
+		/create( +)table( +)(.+)?\(/gi.test(sql_table);
+		let table_name = RegExp.$3;
+		let var_sections = var_part.split(/,[ \r\t\n]*/);
 		let attributes = [];
 
 		var_sections.forEach(sec => {
@@ -31,8 +31,12 @@ module.exports = class SQLParser {
 			let test = name.toLowerCase();
 			if (!type || !test || test == 'foreign' || test == 'primary')
 				return;
-			if (type.includes(')')) 
-				type = type.split(')')[0];
+			if (type.includes(')')) {
+				if (type.includes('('))
+					type = type.split('(')[0];
+				else
+					type = type.split(')')[0];
+			} 
 			attributes.push(new SQLVar(name, type));
 		});
 		

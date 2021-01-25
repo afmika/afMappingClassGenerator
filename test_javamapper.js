@@ -7,6 +7,7 @@ let sql = `
 		ref INT,
 		name VARCHAR(20), -- somme comments
 		birth DATE,-- somme comments
+		hello TIMESTAMP,
 		FOREIGN KEY (ref) REFERENCES Something(ref),
 		-- somme comments
 	)`;
