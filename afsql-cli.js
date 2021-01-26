@@ -1,17 +1,26 @@
 #!/usr/bin/env node
 
 const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
+const mapCsharpFrom = require(__dirname.replace(/\\/gi, '/') + '/CSharpMapper');
 const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
 
 const [ , , ...args] = process.argv;
-function sqlFromFile (sqlfile) {
+function sqlFromFile (sqlfile, op) {
 	let content = require('fs').readFileSync(sqlfile);
 	let tab_queries = SQLParser.fetchTables(content.toString());
 	let non_public = true;
 	tab_queries.forEach (query => {
 		const temp = SQLParser.parse(query);
-		const output = mapJavaFrom(query, non_public);
-		const filename = temp.table_name + '.java';
+		let filename = temp.table_name;
+		let output = null;
+		if (op == 'java') {
+			filename += '.java';
+			output = mapJavaFrom(query, non_public);			
+		} else {
+			filename += '.cs';
+			output = mapCsharpFrom(query, non_public);			
+		}
+		
 		require('fs').writeFileSync(filename, output);
 		console.log(filename + '\t\tcreated !');
 	});
@@ -41,8 +50,8 @@ function badOption () {
 // afsql sql file.sql
 const [op, file] = args;
 if (args.length == 2) {
-	if (op == 'sql') {
-		sqlFromFile(file);
+	if (op == 'java' || op == 'csharp') {
+		sqlFromFile(file, op);
 	} else {
 		badOption();
 	}
