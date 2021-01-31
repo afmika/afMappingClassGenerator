@@ -47,10 +47,19 @@ module.exports = class SQLParser {
 		let table_name = RegExp.$3;
 		let var_sections = var_part.split(/,[ \r\t\n]*/);
 		let attributes = [];
-
 		var_sections.forEach(sec => {
-			let [name, type] = sec.split(/[ ]+/gi).map(removeSpace);
+			let temp = sec.split(/[ \n\t\r]+/gi).map(removeSpace);
+			let parsed = [];
+			for (let it of temp) {
+				if (it != '')
+					parsed.push(it);
+				if (parsed.length == 2)
+					break;
+			}
+			
+			let [name, type] = parsed; 
 			let test = name.toLowerCase();
+			
 			if (!type || !test || test == 'foreign' || test == 'primary')
 				return;
 			if (type.includes(')')) {
@@ -59,6 +68,7 @@ module.exports = class SQLParser {
 				else
 					type = type.split(')')[0];
 			} 
+			
 			attributes.push(new SQLVar(name, type));
 		});
 		

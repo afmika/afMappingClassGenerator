@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
-const mapCsharpFrom = require(__dirname.replace(/\\/gi, '/') + '/CSharpMapper');
 const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
+const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
+const mapJSFrom = require(__dirname.replace(/\\/gi, '/') + '/JSMapper');
 
 const [ , , ...args] = process.argv;
 function sqlFromFile (sqlfile, op) {
@@ -17,8 +17,8 @@ function sqlFromFile (sqlfile, op) {
 			filename += '.java';
 			output = mapJavaFrom(query, non_public);			
 		} else {
-			filename += '.cs';
-			output = mapCsharpFrom(query, non_public);			
+			filename += '.js';
+			output = mapJSFrom(query, non_public);			
 		}
 		
 		require('fs').writeFileSync(filename, output);
@@ -45,12 +45,13 @@ function badOption () {
 	console.log('afsql compiler');
 	console.log('Bad option !');
 	console.log('$ afsql file.sql # exports to json');
-	console.log('$ afsql sql file.sql # outputs corresponding java files');
+	console.log('$ afsql java file.sql # outputs corresponding java files');
+	console.log('$ afsql js file.sql # outputs corresponding JS files');
 }
 // afsql sql file.sql
 const [op, file] = args;
 if (args.length == 2) {
-	if (op == 'java' || op == 'csharp') {
+	if (op == 'java' || op == 'js') {
 		sqlFromFile(file, op);
 	} else {
 		badOption();

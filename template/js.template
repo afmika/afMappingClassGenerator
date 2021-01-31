@@ -1,0 +1,10 @@
+class ${CLASS_NAME} {
+${CONSTR_DEF}
+
+${SET_DEF}
+${GET_DEF}
+	
+	toString () {
+		return ${TO_STRING_DEF};
+	}
+}

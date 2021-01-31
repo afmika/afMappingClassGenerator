@@ -27,7 +27,7 @@ module.exports = class TransType {
 	asSetter(prefix) {
 		let type = this.type_obj.getName();
 		let pref = prefix ? prefix + ' ' : ''; 
-		return `${pref}${type} set${majFirst(this.var_name)} (${type} ${this.var_name})`;	
+		return `${pref}void set${majFirst(this.var_name)} (${type} ${this.var_name})`;	
 	}
 
 	// prefix type getName()
