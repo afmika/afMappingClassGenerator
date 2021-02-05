@@ -6,7 +6,7 @@ function removeSpace(str) {
 	return str.replace(/[ \r\t\n]+/, '');
 }
 function removeComments(sql_table) {
-	return sql_table.replace(/--([ \t]+)(.+)(\r?\n)/g, '\n');
+	return sql_table.replace(/--(([ \t]+)(.+))?(\r?\n)/g, '\n');
 }
 
 module.exports = class SQLParser {

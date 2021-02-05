@@ -1,7 +1,6 @@
 /**
  * @author afmika
  */
-console.log('Tralala')
 
 const Type = require(__dirname.replace(/\\/gi, '/') + '/scripts/Type');
 const TemplateLoader = require(__dirname.replace(/\\/gi, '/') + '/scripts/TemplateLoader');
