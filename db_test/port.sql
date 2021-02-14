@@ -45,7 +45,20 @@ CREATE SEQUENCE QuaiSequence;
 INSERT INTO Quai VALUES ('Quai_' || QuaiSequence.nextval, 2);
 INSERT INTO Quai VALUES ('Quai_' || QuaiSequence.nextval, 3);
 INSERT INTO Quai VALUES ('Quai_' || QuaiSequence.nextval, 4);
-
+CREATE TABLE FactureEscale (
+	idfactureescale VARCHAR (20) PRIMARY KEY,
+	idescale VARCHAR (20), -- escale correspondant
+	idquai VARCHAR (20),
+	arrivee TIMESTAMP, -- arrivee sur ce quai
+	depart TIMESTAMP, -- depart sur ce quai
+	duree float,
+	tarif number, -- en Ar
+	duree_penalite float,
+	penalite number, -- en Ar
+	total number, -- en Ar
+	FOREIGN KEY (idescale) REFERENCES Escale (idescale),
+	FOREIGN KEY (idquai) REFERENCES Quai (idquai)
+);
 
 -- test
 -- 1,5

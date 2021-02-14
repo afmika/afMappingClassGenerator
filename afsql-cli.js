@@ -5,7 +5,7 @@ const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
 const mapJSFrom = require(__dirname.replace(/\\/gi, '/') + '/JSMapper');
 
 const [ , , ...args] = process.argv;
-function sqlFromFile (sqlfile, op) {
+function sqlFromFile (sqlfile, op, use_spaces = false) {
 	let content = require('fs').readFileSync(sqlfile);
 	let tab_queries = SQLParser.fetchTables(content.toString());
 	let non_public = true;
@@ -20,6 +20,9 @@ function sqlFromFile (sqlfile, op) {
 			filename += '.js';
 			output = mapJSFrom(query, non_public);			
 		}
+		
+		if (use_spaces)
+			output = output.replace(/\t/gi, '    ');
 		
 		require('fs').writeFileSync(filename, output);
 		console.log(filename + '\t\tcreated !');
@@ -49,10 +52,11 @@ function badOption () {
 	console.log('$ afsql js file.sql # outputs corresponding JS files');
 }
 // afsql sql file.sql
-const [op, file] = args;
-if (args.length == 2) {
+const [op, file, use_spaces] = args;
+if (args.length == 2 || args.length == 3) {
 	if (op == 'java' || op == 'js') {
-		sqlFromFile(file, op);
+		console.log(use_spaces == '--spaces' ? 'Mode : Spaces' : 'Mode : Tabs');
+		sqlFromFile(file, op, use_spaces == '--spaces');
 	} else {
 		badOption();
 	}
