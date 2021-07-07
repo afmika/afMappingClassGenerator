@@ -11,6 +11,7 @@ module.exports = class TransType {
 	 * @params {Type} type_obj
 	 */
 	constructor (var_name, type_obj) {
+		// console.log(var_name, type_obj);
 		this.var_name = var_name;
 		this.type_obj = type_obj;
 	}

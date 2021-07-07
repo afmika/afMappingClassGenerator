@@ -48,27 +48,12 @@ module.exports = class SQLParser {
 		let var_sections = var_part.split(/,[ \r\t\n]*/);
 		let attributes = [];
 		var_sections.forEach(sec => {
-			let temp = sec.split(/[ \n\t\r]+/gi).map(removeSpace);
-			let parsed = [];
-			for (let it of temp) {
-				if (it != '')
-					parsed.push(it);
-				if (parsed.length == 2)
-					break;
-			}
-			
-			let [name, type] = parsed; 
-			let test = name.toLowerCase();
-			
-			if (!type || !test || test == 'foreign' || test == 'primary')
+			// tokenizes as something like ['idstudent', ' VARCHAR', 'NOT NULL', ...];
+			let temp = sec.match(/[ \t]*([\w\d]+)[ \t]/gi);
+			if (temp == null)
 				return;
-			if (type.includes(')')) {
-				if (type.includes('('))
-					type = type.split('(')[0];
-				else
-					type = type.split(')')[0];
-			} 
-			
+			temp = temp.map(removeSpace);
+			const [name, type] = temp; // first and second items
 			attributes.push(new SQLVar(name, type));
 		});
 		

@@ -24,7 +24,7 @@ function mapJavaUsing(table_name, sql_vars, non_public = false) {
 		'float' : new Type('float', 0),
 		'varchar|varchar([0-9]+)' : new Type('String', null),
 		'Timestamp|Date' : new Type('Timestamp', null),
-		'number|bigint' : new Type('BigDecimal', null),
+		'number|bigint|numeric' : new Type('BigDecimal', null),
 
 		// default
 		'(.)+' : new Type('String', null)

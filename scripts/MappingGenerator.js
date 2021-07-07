@@ -40,6 +40,7 @@ module.exports = class MappingGenerator {
 				sql_var.getName(),
 				this.get(sql_var.getType()) // sql -> meta lang
 			);
+			// console.log(translated);
 
 			converted_attr.push(translated);
 		});
