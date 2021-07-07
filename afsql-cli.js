@@ -2,6 +2,7 @@
 
 const SQLParser = require(__dirname.replace(/\\/gi, '/') + '/scripts/SQLParser');
 const mapJavaFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaMapper');
+const mapJavaHibernateFrom = require(__dirname.replace(/\\/gi, '/') + '/JavaHibernateMapper');
 const mapJSFrom = require(__dirname.replace(/\\/gi, '/') + '/JSMapper');
 
 const [ , , ...args] = process.argv;
@@ -13,9 +14,10 @@ function sqlFromFile (sqlfile, op, use_spaces = false) {
 		const temp = SQLParser.parse(query);
 		let filename = temp.table_name;
 		let output = null;
-		if (op == 'java') {
+		if (['java', 'hibernate'].includes(op)) {
 			filename += '.java';
-			output = mapJavaFrom(query, non_public);			
+			let fun_map = {'java' : mapJavaFrom, 'hibernate' : mapJavaHibernateFrom};
+			output = fun_map[op] (query, non_public);			
 		} else {
 			filename += '.js';
 			output = mapJSFrom(query, non_public);			
@@ -54,7 +56,7 @@ function badOption () {
 // afsql sql file.sql
 const [op, file, use_spaces] = args;
 if (args.length == 2 || args.length == 3) {
-	if (op == 'java' || op == 'js') {
+	if (['java', 'js', 'hibernate'].includes(op)) {
 		console.log(use_spaces == '--spaces' ? 'Mode : Spaces' : 'Mode : Tabs');
 		sqlFromFile(file, op, use_spaces == '--spaces');
 	} else {

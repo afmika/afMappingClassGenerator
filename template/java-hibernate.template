@@ -1,0 +1,18 @@
+import java.sql.*;
+import javax.persistence.*;
+
+@Entity
+@Table (name = "${CLASS_NAME}")
+public class ${CLASS_NAME} {
+${ATTRIBUTES}
+	public ${CLASS_NAME} () {}
+${CONSTR_DEF}
+
+${SET_DEF}
+${GET_DEF}
+	
+	@Override
+	public String toString () {
+		return ${TO_STRING_DEF};
+	}
+}
