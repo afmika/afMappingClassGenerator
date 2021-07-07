@@ -1,3 +1,6 @@
+/**
+ * @author afmika
+ */
 public class ${CLASS_NAME} {
 ${ATTRIBUTES}
 	public ${CLASS_NAME} () {}

@@ -1,6 +1,9 @@
 import java.sql.*;
 import javax.persistence.*;
 
+/**
+ * @author afmika
+ */
 @Entity
 @Table (name = "${CLASS_NAME}")
 public class ${CLASS_NAME} {

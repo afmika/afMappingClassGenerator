@@ -2,6 +2,9 @@ import java.sql.*;
 import javax.persistence.*;
 import annotations.*;
 
+/**
+ * @author afmika
+ */
 @Entity
 @afTable (alias = "${CLASS_NAME}")
 @Table (name = "${CLASS_NAME}")

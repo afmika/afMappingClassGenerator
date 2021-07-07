@@ -1,6 +1,9 @@
 import java.sql.*;
 import annotations.*;
 
+/**
+ * @author afmika
+ */
 @afTable (alias = "${CLASS_NAME}")
 public class ${CLASS_NAME} {
 ${ATTRIBUTES}
